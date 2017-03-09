@@ -16,3 +16,6 @@ hs_err_pid*
 
 # DB config
 res/db.properties
+
+# Database directory (for development)
+database/
