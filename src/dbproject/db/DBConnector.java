@@ -21,23 +21,28 @@ public class DBConnector {
 
     public void connect() {
         try {
-            if(dbConfig.type == "sqlite")
+            if(dbConfig.type.equals("sqlite")) {
                 conn = DriverManager.getConnection(dbConfig.url);
-            else if(dbConfig.type == "mysql")
+            } else if(dbConfig.type.equals("mysql")) {
                 conn = DriverManager.getConnection(dbConfig.url, dbConfig.username, dbConfig.password);
+            }
         } catch(SQLException e) {
             System.out.println("Could not establish connection to database: " + e.getMessage());
-        } finally {
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch(SQLException e) {
-                System.out.println(e.getMessage());
-            }
         }
     }
 
-    public Connection getConnection() {
+    public void close() {
+        if(conn != null)
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
+
+    public Connection getConnection() throws IllegalStateException {
+        if(conn == null)
+            throw new IllegalStateException("You must call connect() before getting the connection!");
         return conn;
     }
 
