@@ -1,6 +1,8 @@
 package dbproject.db;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Workout extends Model{
 	
@@ -45,6 +47,27 @@ public class Workout extends Model{
 	            return workout;
 	        } catch(SQLException e) {}
 	        return null;
+	}
+	
+	public static List<Workout> workoutWeek(String weekStart, String weekEnd) {
+		try {
+			dbConnector.connect();
+			Connection conn = dbConnector.getConnection();
+			PreparedStatement statement = conn.prepareStatement("SELECT time, name, duration, condition, performance, notes, id " +
+																	"FROM Workout" +
+																	"WHERE time >= ? AND time <= ?");
+			statement.setString(1, weekStart);
+			statement.setString(2, weekEnd);
+			ResultSet rs= statement.executeQuery();
+			List<Workout> week = new ArrayList<>();
+			while(rs.next()) {
+				Workout workout = new Workout(rs.getString("name"), rs.getString("time"), rs.getInt("duration"),
+						rs.getInt("condition"), rs.getInt("performance"), rs.getString("id"), rs.getInt("id"));
+				week.add(workout);
+			}
+			return week;
+		} catch(SQLException e) {}
+		return null;
 	}
 	
 	@Override
