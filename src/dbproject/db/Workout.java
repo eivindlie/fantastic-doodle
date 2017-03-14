@@ -63,7 +63,7 @@ public class Workout extends Model{
 		 try {
 	            dbConnector.connect();
 	            Connection conn = dbConnector.getConnection();
-	            PreparedStatement statement = conn.prepareStatement("SELECT time, name, duration, condition, performance, notes " +
+	            PreparedStatement statement = conn.prepareStatement("SELECT time, name, duration, physicalCondition, performance, notes " +
 	                                                                    "FROM Workout" +
 	                                                                    "WHERE id = ?");
 	            statement.setInt(1, id);
@@ -77,12 +77,35 @@ public class Workout extends Model{
 	        } catch(SQLException e) {}
 	        return null;
 	}
+
+	public static List<Workout> getAll() {
+		try {
+			dbConnector.connect();
+			Connection conn = dbConnector.getConnection();
+			PreparedStatement statement = conn.prepareStatement("SELECT time, name, duration, physicalCondition, performance, notes, id " +
+																	"FROM Workout");
+			ResultSet rs = statement.executeQuery();
+			List<Workout> results = new ArrayList<>();
+			while(rs.next()) {
+				Workout workout = new Workout(rs.getString("name"), rs.getString("time"), rs.getInt("duration"),
+						rs.getInt("condition"), rs.getInt("performance"), rs.getString("notes"), rs.getInt("id"));
+				results.add(workout);
+			}
+
+			dbConnector.close();
+			return results;
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return new ArrayList<>();
+	}
 	
 	public static List<Workout> workoutWeek(String weekStart, String weekEnd) {
 		try {
 			dbConnector.connect();
 			Connection conn = dbConnector.getConnection();
-			PreparedStatement statement = conn.prepareStatement("SELECT time, name, duration, condition, performance, notes, id " +
+			PreparedStatement statement = conn.prepareStatement("SELECT time, name, duration, physicalCondition, performance, notes, id " +
 																	"FROM Workout" +
 																	"WHERE time >= ? AND time <= ?");
 			statement.setString(1, weekStart);
@@ -98,7 +121,7 @@ public class Workout extends Model{
 		} catch(SQLException e) {}
 		return null;
 	}
-	
+
 	@Override
 	public void save() {
 		try {
@@ -106,11 +129,11 @@ public class Workout extends Model{
             Connection conn = dbConnector.getConnection();
             PreparedStatement statement;
             if(id == -1) {
-                statement = conn.prepareStatement("INSERT INTO Workout('time', 'name', 'duration', 'condition', 'performance', 'notes' )" +
+                statement = conn.prepareStatement("INSERT INTO Workout('time', 'name', 'duration', 'condition', 'performance', 'notes' ) " +
                                                         "VALUES(?, ?, ? ,? ,? ,?)");
             } else {
-                statement = conn.prepareStatement("UPDATE Workout" +
-                                                        "SET time = ?, name = ?, duration = ?, condition = ?, performance = ?, notes = ?" +
+                statement = conn.prepareStatement("UPDATE Workout " +
+                                                        "SET time = ?, name = ?, duration = ?, condition = ?, performance = ?, notes = ? " +
                                                         "WHERE id = ?");
                 statement.setInt(7, this.id);
             }
