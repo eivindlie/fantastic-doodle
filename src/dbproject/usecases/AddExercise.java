@@ -10,17 +10,17 @@ import java.util.Scanner;
  */
 public class AddExercise implements UseCaseInterface {
     @Override
-    public void runUseCase() {
+    public void runUseCase(Scanner scanner) {
         System.out.println("\r\nWelcome to the Exercise Addition Module (EAM)");
         System.out.println("Please enter your data below");
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter exercise name: ");
-            String name = scanner.nextLine();
-            System.out.print("Enter exercise description: ");
-            String description = scanner.nextLine();
 
-            Exercise exercise = new Exercise(name, description);
-            exercise.save();
-        }
+        System.out.print("Enter exercise name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter exercise description: ");
+        String description = scanner.nextLine();
+        System.out.println();
+
+        Exercise exercise = new Exercise(name, description);
+        exercise.save();
     }
 }

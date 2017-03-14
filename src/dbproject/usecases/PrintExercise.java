@@ -3,6 +3,7 @@ package dbproject.usecases;
 import dbproject.db.Exercise;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by ela49 on 14.03.2017.
@@ -10,7 +11,7 @@ import java.util.List;
 public class PrintExercise implements UseCaseInterface {
 
     @Override
-    public void runUseCase() {
+    public void runUseCase(Scanner scanner) {
         List<Exercise> exercises = Exercise.getAll();
         if(exercises.isEmpty()) {
             System.out.println("There are no exercises, master!");

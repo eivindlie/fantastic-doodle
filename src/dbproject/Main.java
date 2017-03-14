@@ -35,10 +35,10 @@ public class Main {
 
                         break;
                     case "addExercise":
-                        addExerciseUsecase.runUseCase();
+                        addExerciseUsecase.runUseCase(scanner);
                         break;
                     case "printExercises":
-                        printExercisesUsecase.runUseCase();
+                        printExercisesUsecase.runUseCase(scanner);
                         break;
                 }
 
