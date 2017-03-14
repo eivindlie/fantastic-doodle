@@ -28,5 +28,15 @@ public class AddWorkout implements UseCaseInterface {
 
         Workout workout = new Workout(name, time, duration, condition, performance, notes);
         workout.save();
+        
+        while(true){
+        	String x = scanner.nextLine();
+        	if (x.equals("exit")){
+        		break;
+        	}
+        	int id = Integer.parseInt(x);
+        	workout.addExercise(id);
+        }
 	}
 }
+
