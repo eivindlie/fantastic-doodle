@@ -168,7 +168,7 @@ public class Workout extends Model{
                                                         "VALUES(?, ?)");
             statement.setInt(1, this.id);
             statement.setInt(2, id);
-            statement.executeQuery();
+            statement.executeUpdate();
             dbConnector.close();
         } catch(SQLException e) {
 			e.printStackTrace();
