@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Exercise extends Model {
-    String name;
-    String description;
-    int id = -1;
+    private String name;
+    private String description;
+    private int id = -1;
 
     public Exercise(String name, String description) {
         this.name = name;
@@ -17,6 +17,18 @@ public class Exercise extends Model {
     private Exercise(String name, String description, int id) {
         this(name, description);
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public static Exercise getById(int id) {
@@ -37,11 +49,11 @@ public class Exercise extends Model {
         return null;
     }
 
-    public List<Exercise> getAll() {
+    public static List<Exercise> getAll() {
         try {
             dbConnector.connect();
             Connection conn = dbConnector.getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT name, description, id" +
+            PreparedStatement statement = conn.prepareStatement("SELECT name, description, id " +
                                                                     "FROM Exercise");
             ResultSet rs = statement.executeQuery();
             List<Exercise> results = new ArrayList<>();
@@ -52,7 +64,10 @@ public class Exercise extends Model {
 
             dbConnector.close();
             return results;
-        } catch(SQLException e) {}
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
         return new ArrayList<>();
     }
 
@@ -63,11 +78,11 @@ public class Exercise extends Model {
             Connection conn = dbConnector.getConnection();
             PreparedStatement statement;
             if(id == -1) {
-                statement = conn.prepareStatement("INSERT INTO Exercise('name', 'description')" +
+                statement = conn.prepareStatement("INSERT INTO Exercise('name', 'description') " +
                                                         "VALUES(?, ?)");
             } else {
-                statement = conn.prepareStatement("UPDATE Exercise" +
-                                                        "SET name = ?, description = ?" +
+                statement = conn.prepareStatement("UPDATE Exercise " +
+                                                        "SET name = ?, description = ? " +
                                                         "WHERE id = ?");
                 statement.setInt(3, this.id);
             }

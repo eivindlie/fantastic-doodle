@@ -1,5 +1,7 @@
 package dbproject.usecases;
 
+import dbproject.db.Exercise;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -16,6 +18,9 @@ public class AddExercise implements UseCaseInterface {
             String name = scanner.nextLine();
             System.out.print("Enter exercise description: ");
             String description = scanner.nextLine();
+
+            Exercise exercise = new Exercise(name, description);
+            exercise.save();
         }
     }
 }

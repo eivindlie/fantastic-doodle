@@ -32,12 +32,16 @@ public class DBConnector {
     }
 
     public void close() {
-        if(conn != null)
+        if(conn != null) {
             try {
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        } else {
+            System.out.println("Connection has not been initialized...");
+        }
+
     }
 
     public Connection getConnection() throws IllegalStateException {
