@@ -1,6 +1,5 @@
 package dbproject.usecases;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
