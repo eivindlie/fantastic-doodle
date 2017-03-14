@@ -28,7 +28,7 @@ public class Main {
 
     public void run() {
         try(Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Welcome to the Fantastic Doodle exercise manager!");
+            System.out.println("Welcome to the Fantastic Doodle eXercise Manager!");
             System.out.println("Enter your command, master:");
             System.out.print(">> ");
             String input = scanner.nextLine();
