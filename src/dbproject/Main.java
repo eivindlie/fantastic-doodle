@@ -29,12 +29,14 @@ public class Main {
         Connection conn = dbConnector.getConnection();
         Statement statement = conn.createStatement();
         statement.execute("CREATE TABLE testTable(" +
-                    "name VARCHAR(50)," +
-                    "id INT(10)" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "name VARCHAR(50)" +
                 ")");
-        statement.execute("INSERT INTO testTable('name', 'id') VALUES ('Gunnar', '1')");
+        statement.execute("INSERT INTO testTable('name') VALUES ('Eivind')");
         ResultSet rs = statement.executeQuery("SELECT * FROM testTable");
-        System.out.println(rs.getString("id") + ": " + rs.getString("name"));
+        while(rs.next()) {
+            System.out.println(rs.getString("id") + ": " + rs.getString("name"));
+        }
 
         dbConnector.close();
     }
