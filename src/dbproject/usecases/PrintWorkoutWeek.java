@@ -10,10 +10,10 @@ public class PrintWorkoutWeek implements UseCaseInterface{
 	@Override
 	public void runUseCase(Scanner scanner) {
 		System.out.println("Enter the date the week begins, master:");
-		System.out.print(">>>");
+		System.out.print(">> ");
 		String weekStart = scanner.nextLine();
 		System.out.println("Enter the date the week ends, master:");
-		System.out.print(">>>");
+		System.out.print(">> ");
 		String weekEnd = scanner.nextLine();
 		List<Workout> week = Workout.workoutWeek(weekStart, weekEnd);
 		if(week.isEmpty()) {

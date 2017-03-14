@@ -13,6 +13,7 @@ public class Main {
     UseCaseInterface printExercisesUsecase;
     UseCaseInterface printHelpUsecase;
     UseCaseInterface printWorkoutsUsecase;
+    UseCaseInterface printWorkoutWeekUsecase;
 
     public Main() {
         dbConnector = new DBConnector();
@@ -21,6 +22,7 @@ public class Main {
         printExercisesUsecase = new PrintExercise();
         printHelpUsecase = new PrintHelp();
         printWorkoutsUsecase = new PrintWorkouts();
+        printWorkoutWeekUsecase = new PrintWorkoutWeek();
     }
 
     public void run() {
@@ -45,6 +47,9 @@ public class Main {
                         break;
                     case "printWorkouts":
                         printWorkoutsUsecase.runUseCase(scanner);
+                        break;
+                    case "printWorkoutWeek":
+                        printWorkoutWeekUsecase.runUseCase(scanner);
                         break;
                 }
 
