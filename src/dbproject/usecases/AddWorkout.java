@@ -1,7 +1,4 @@
 package dbproject.usecases;
-
-import java.util.Scanner;
-
 import dbproject.db.Workout;
 
 public class AddWorkout implements UseCaseInterface {
@@ -16,14 +13,17 @@ public class AddWorkout implements UseCaseInterface {
         String time = scanner.nextLine();
         System.out.print("Enter exercise duration: ");
         int duration = scanner.nextInt();
+        scanner.nextLine()
         System.out.print("Enter exercise condition: ");
         int condition = scanner.nextInt();
+        scanner.nextLine()
         System.out.print("Enter exercise performance: ");
         int performance = scanner.nextInt();
+        scanner.nextLine()
         System.out.print("Enter exercise notes: ");
-        Scanner scanner2 = new Scanner(system.in);
-        String notes = scanner2.nextLine();
+        String notes = scanner.nextLine();
         System.out.println();
+        scanner.close();
 
         Workout workout = new Workout(name, time, duration, condition, performance, notes);
         workout.save();
