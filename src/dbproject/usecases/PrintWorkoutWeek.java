@@ -29,8 +29,8 @@ public class PrintWorkoutWeek implements UseCaseInterface{
 			System.out.println("Duration: \t\t" + workout.getDuration());
 			System.out.println("Condition: \t\t" + workout.getCondition());
 			System.out.println("Notes: \t\t\t" + workout.getNotes());
-			
 		}
+		System.out.println();
 	}
 
 }
