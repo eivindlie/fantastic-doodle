@@ -158,7 +158,7 @@ public class Workout extends Model{
             dbConnector.connect();
             Connection conn = dbConnector.getConnection();
             PreparedStatement statement;
-            statement = conn.prepareStatement("INSERT INTO ExerciseWorkout('WorkoutID, 'ExerciseID'" +
+            statement = conn.prepareStatement("INSERT INTO ExerciseWorkout('WorkoutID', 'ExerciseID') " +
                                                         "VALUES(?, ?)");
             statement.setInt(1, this.id);
             statement.setInt(2, id);
