@@ -92,6 +92,11 @@ public class Workout extends Model{
             statement.setInt(5, this.performance);
             statement.setString(6, this.notes);
             statement.executeQuery();
+			if(id == -1) {
+				ResultSet generatedKeys = statement.getGeneratedKeys();
+				if(generatedKeys.first())
+					this.id = generatedKeys.getInt(1);
+			}
             dbConnector.close();
         } catch(SQLException e) {}
     }
