@@ -106,7 +106,7 @@ public class Workout extends Model{
 			dbConnector.connect();
 			Connection conn = dbConnector.getConnection();
 			PreparedStatement statement = conn.prepareStatement("SELECT time, name, duration, physicalCondition, performance, notes, id " +
-																	"FROM Workout" +
+																	"FROM Workout " +
 																	"WHERE time >= ? AND time <= ?");
 			statement.setString(1, weekStart);
 			statement.setString(2, weekEnd);
