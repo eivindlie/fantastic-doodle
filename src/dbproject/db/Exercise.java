@@ -1,6 +1,8 @@
 package dbproject.db;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Exercise extends Model {
     String name;
@@ -33,6 +35,25 @@ public class Exercise extends Model {
             return exercise;
         } catch(SQLException e) {}
         return null;
+    }
+
+    public List<Exercise> getAll() {
+        try {
+            dbConnector.connect();
+            Connection conn = dbConnector.getConnection();
+            PreparedStatement statement = conn.prepareStatement("SELECT name, description, id" +
+                                                                    "FROM Exercise");
+            ResultSet rs = statement.executeQuery();
+            List<Exercise> results = new ArrayList<>();
+            while(rs.next()) {
+                Exercise exercise = new Exercise(rs.getString("name"), rs.getString("description"), rs.getInt("id"));
+                results.add(exercise);
+            }
+
+            dbConnector.close();
+            return results;
+        } catch(SQLException e) {}
+        return new ArrayList<>();
     }
 
     @Override
