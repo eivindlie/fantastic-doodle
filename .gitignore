@@ -24,6 +24,8 @@ bin/
 # Build output
 build/
 
+META-INF/
+
 # DB config
 res/db.properties
 
