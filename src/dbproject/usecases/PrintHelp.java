@@ -10,6 +10,7 @@ public class PrintHelp implements UseCaseInterface {
     public void runUseCase(Scanner scanner) {
         String[][] cmds = {
                 {"addExercise", "Adds a new exercise"},
+                {"addWorkout", "Adds a new workout"},
                 {"help", "Prints this help menu"},
                 {"printExercises", "Prints all exercises currently in the database"},
             };
