@@ -4,13 +4,42 @@ import java.sql.*;
 
 public class Workout extends Model{
 	
-	String time;
-	String name;
-	int duration;
-	int condition;
-	int performance;
-	String notes;
-	int id = -1;
+	private String time;
+	private String name;
+	private int duration;
+	private int condition;
+	private int performance;
+	private String notes;
+	private int id = -1;
+	
+	
+	public String getTime(){
+		return this.time;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public int getDuration(){
+		return this.duration;
+	}
+	
+	public int getCondition(){
+		return this.condition;
+	}
+	
+	public int getPerformance(){
+		return this.performance;
+	}
+	
+	public String getNotes(){
+		return this.notes;
+	}
+	
+	public int getId(){
+		return this.id;
+	}
 	
 	public Workout(String name, String time, int dur, int cond, int perf, String notes ){
 		this.time = time;
@@ -77,4 +106,18 @@ public class Workout extends Model{
             dbConnector.close();
         } catch(SQLException e) {}
     }
+	
+	public void addExercise(int id){
+		try {
+            dbConnector.connect();
+            Connection conn = dbConnector.getConnection();
+            PreparedStatement statement;
+            statement = conn.prepareStatement("INSERT INTO ExerciseWorkout('WorkoutID, 'ExerciseID'" +
+                                                        "VALUES(?, ?)");
+            statement.setInt(1, this.id);
+            statement.setInt(2, id);
+            statement.executeQuery();
+            dbConnector.close();
+        } catch(SQLException e) {}
+	}
 }
