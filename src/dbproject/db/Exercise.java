@@ -90,6 +90,11 @@ public class Exercise extends Model {
             statement.setString(2, this.description);
 
             statement.executeUpdate();
+            if(id == -1) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if(generatedKeys.first())
+                    this.id = generatedKeys.getInt(1);
+            }
             dbConnector.close();
         } catch(SQLException e) {}
     }
