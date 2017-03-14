@@ -22,7 +22,7 @@ public class Main {
         printExercisesUsecase = new PrintExercise();
         printHelpUsecase = new PrintHelp();
         printWorkoutsUsecase = new PrintWorkouts();
-        printWorkoutWeekUsecase = new PrintWorkoutWeek();
+        printWorkoutWeekUsecase = new PrintWorkoutPeriod();
     }
 
     public void run() {
@@ -48,7 +48,7 @@ public class Main {
                     case "printWorkouts":
                         printWorkoutsUsecase.runUseCase(scanner);
                         break;
-                    case "printWorkoutWeek":
+                    case "printWorkoutPeriod":
                         printWorkoutWeekUsecase.runUseCase(scanner);
                         break;
                 }

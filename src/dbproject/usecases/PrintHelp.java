@@ -14,6 +14,7 @@ public class PrintHelp implements UseCaseInterface {
                 {"help", "Prints this help menu"},
                 {"printExercises", "Prints all exercises currently in the database"},
                 {"printWorkouts", "Prints all workouts currently in the database"},
+                {"printWorkoutPeriod", "Prints all workouts in the specified period"},
             };
 
         System.out.println();
