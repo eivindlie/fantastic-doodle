@@ -13,6 +13,7 @@ public class PrintHelp implements UseCaseInterface {
                 {"addWorkout", "Adds a new workout"},
                 {"help", "Prints this help menu"},
                 {"printExercises", "Prints all exercises currently in the database"},
+                {"printWorkouts", "Prints all workouts currently in the database"},
             };
 
         System.out.println();

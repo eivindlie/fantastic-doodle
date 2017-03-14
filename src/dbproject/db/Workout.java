@@ -71,7 +71,7 @@ public class Workout extends Model{
 	            if(!rs.first())
 	                return null;
 	            Workout workout = new Workout(rs.getString("name"), rs.getString("time"), rs.getInt("duration"),
-	            		rs.getInt("condition"), rs.getInt("performance"), rs.getString("notes"), id);
+	            		rs.getInt("physicalCondition"), rs.getInt("performance"), rs.getString("notes"), id);
 	            dbConnector.close();
 	            return workout;
 	        } catch(SQLException e) {}
@@ -88,7 +88,7 @@ public class Workout extends Model{
 			List<Workout> results = new ArrayList<>();
 			while(rs.next()) {
 				Workout workout = new Workout(rs.getString("name"), rs.getString("time"), rs.getInt("duration"),
-						rs.getInt("condition"), rs.getInt("performance"), rs.getString("notes"), rs.getInt("id"));
+						rs.getInt("physicalCondition"), rs.getInt("performance"), rs.getString("notes"), rs.getInt("id"));
 				results.add(workout);
 			}
 
@@ -118,7 +118,10 @@ public class Workout extends Model{
 				week.add(workout);
 			}
 			return week;
-		} catch(SQLException e) {}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 		return null;
 	}
 
@@ -129,7 +132,7 @@ public class Workout extends Model{
             Connection conn = dbConnector.getConnection();
             PreparedStatement statement;
             if(id == -1) {
-                statement = conn.prepareStatement("INSERT INTO Workout('time', 'name', 'duration', 'condition', 'performance', 'notes' ) " +
+                statement = conn.prepareStatement("INSERT INTO Workout('time', 'name', 'duration', 'physicalCondition', 'performance', 'notes' ) " +
                                                         "VALUES(?, ?, ? ,? ,? ,?)");
             } else {
                 statement = conn.prepareStatement("UPDATE Workout " +
@@ -143,14 +146,17 @@ public class Workout extends Model{
             statement.setInt(4, this.condition);
             statement.setInt(5, this.performance);
             statement.setString(6, this.notes);
-            statement.executeQuery();
+            statement.executeUpdate();
 			if(id == -1) {
 				ResultSet generatedKeys = statement.getGeneratedKeys();
-				if(generatedKeys.first())
+				if(generatedKeys.next())
 					this.id = generatedKeys.getInt(1);
 			}
             dbConnector.close();
-        } catch(SQLException e) {}
+        } catch(SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
     }
 	
 	public void addExercise(int id){
@@ -164,6 +170,9 @@ public class Workout extends Model{
             statement.setInt(2, id);
             statement.executeQuery();
             dbConnector.close();
-        } catch(SQLException e) {}
+        } catch(SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 }
