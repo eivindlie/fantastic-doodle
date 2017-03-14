@@ -21,7 +21,8 @@ public class AddWorkout implements UseCaseInterface {
         System.out.print("Enter exercise performance: ");
         int performance = scanner.nextInt();
         System.out.print("Enter exercise notes: ");
-        String notes = scanner.nextLine();
+        Scanner scanner2 = new Scanner(system.in);
+        String notes = scanner2.nextLine();
         System.out.println();
 
         Workout workout = new Workout(name, time, duration, condition, performance, notes);
