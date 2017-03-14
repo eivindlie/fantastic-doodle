@@ -24,7 +24,11 @@ public class PrintWorkoutWeek implements UseCaseInterface{
 		System.out.println("Here is a list of all the workouts that week, master:");
 		for(Workout workout : week) {
 			System.out.println();
-			System.out.println("Name: \t\t\t");
+			System.out.println("Name: \t\t\t" + workout.getName());
+			System.out.println("Time: \t\t\t" + workout.getTime());
+			System.out.println("Duration: \t\t" + workout.getDuration());
+			System.out.println("Condition: \t\t" + workout.getCondition());
+			System.out.println("Notes: \t\t\t" + workout.getNotes());
 			
 		}
 	}
