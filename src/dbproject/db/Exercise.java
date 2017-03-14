@@ -88,7 +88,8 @@ public class Exercise extends Model {
             }
             statement.setString(1, this.name);
             statement.setString(2, this.description);
-            statement.executeQuery();
+
+            statement.executeUpdate();
             dbConnector.close();
         } catch(SQLException e) {}
     }
