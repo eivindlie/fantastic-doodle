@@ -3,6 +3,7 @@ package dbproject;
 import dbproject.db.DBConnector;
 import dbproject.usecases.AddExercise;
 import dbproject.usecases.PrintExercise;
+import dbproject.usecases.PrintHelp;
 import dbproject.usecases.UseCaseInterface;
 
 import java.sql.Connection;
@@ -16,11 +17,13 @@ public class Main {
     DBConnector dbConnector;
     UseCaseInterface addExerciseUsecase;
     UseCaseInterface printExercisesUsecase;
+    UseCaseInterface printHelpUsecase;
 
     public Main() {
         dbConnector = new DBConnector();
         addExerciseUsecase = new AddExercise();
         printExercisesUsecase = new PrintExercise();
+        printHelpUsecase = new PrintHelp();
     }
 
     public void run() {
@@ -32,7 +35,7 @@ public class Main {
             while(!input.equals("exit")) {
                 switch(input) {
                     case "help":
-
+                        printHelpUsecase.runUseCase(scanner);
                         break;
                     case "addExercise":
                         addExerciseUsecase.runUseCase(scanner);
