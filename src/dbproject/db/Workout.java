@@ -114,7 +114,7 @@ public class Workout extends Model{
 			List<Workout> week = new ArrayList<>();
 			while(rs.next()) {
 				Workout workout = new Workout(rs.getString("name"), rs.getString("time"), rs.getInt("duration"),
-						rs.getInt("condition"), rs.getInt("performance"), rs.getString("id"), rs.getInt("id"));
+						rs.getInt("physicalCondition"), rs.getInt("performance"), rs.getString("id"), rs.getInt("id"));
 				week.add(workout);
 			}
 			return week;
