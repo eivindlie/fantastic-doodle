@@ -1,6 +1,8 @@
 package dbproject.usecases;
 import dbproject.db.Workout;
 
+import java.util.Scanner;
+
 public class AddWorkout implements UseCaseInterface {
 
 	@Override
@@ -13,17 +15,16 @@ public class AddWorkout implements UseCaseInterface {
         String time = scanner.nextLine();
         System.out.print("Enter exercise duration: ");
         int duration = scanner.nextInt();
-        scanner.nextLine()
+        scanner.nextLine();
         System.out.print("Enter exercise condition: ");
         int condition = scanner.nextInt();
-        scanner.nextLine()
+        scanner.nextLine();
         System.out.print("Enter exercise performance: ");
         int performance = scanner.nextInt();
-        scanner.nextLine()
+        scanner.nextLine();
         System.out.print("Enter exercise notes: ");
         String notes = scanner.nextLine();
         System.out.println();
-        scanner.close();
 
         Workout workout = new Workout(name, time, duration, condition, performance, notes);
         workout.save();
